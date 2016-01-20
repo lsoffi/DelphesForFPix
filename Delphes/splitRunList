@@ -1,0 +1,24 @@
+#!/usr/bin/env perl
+
+use strict;
+
+my $dir = $ARGV[0];
+my $nFilesPerList = $ARGV[1];
+
+open (RUN_LIST, "<${dir}.txt");
+my @runList = <RUN_LIST>;
+close (RUN_LIST);
+
+my $fileIndex = 0;
+my $listIndex = 0;
+system ("rm -f ${dir}_*.txt");
+foreach my $file (@runList)
+{
+  open (RUN_LIST, ">>${dir}_${listIndex}.txt");
+  print RUN_LIST $file;
+  close (RUN_LIST);
+
+  $fileIndex++;
+  my $modResult = $fileIndex % $nFilesPerList;
+  $listIndex++ if !($fileIndex % $nFilesPerList);
+}

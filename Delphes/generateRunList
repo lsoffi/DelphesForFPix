@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+
+if [ $# -ne 2 ]
+then
+  echo "Usage: ${0} DIRECTORY OUTPUT"
+  echo "Generates a list of output files in a Condor output directory created by"
+  echo "delphesSub."
+  echo ""
+  echo "DIRECTORY is a Condor output directory created by delphesSub. OUTPUT is the"
+  echo "name of the list of output files which will be created."
+  exit
+fi
+
+DIR=$1
+OUTPUT=$2
+
+if [ ! -e ${DIR} ]
+then
+  echo "Condor output directory does not exist."
+  exit
+fi
+if [ ! -d ${DIR} ]
+then
+  echo "The first argument must be a directory."
+  exit
+fi
+if [ -e ${OUTPUT} ]
+then
+  echo "The output list already exists."
+  exit
+fi
+
+`ls ${DIR}/condor_*.log > /dev/null 2>&1`
+if [ $? -ne 0 ]
+then
+  echo "Expected Condor log files are not present."
+  exit
+fi
+
+DIR=`readlink -f ${DIR}`
+
+NJOBS=`ls ${DIR}/condor_*.log | wc -l`
+grep -H 'return value 0' ${DIR}/condor_*.log | sed "s/condor_\([^.]*\)\.log:.*/output_\1.root/g" | sort -u > ${OUTPUT}
+NSUCCESS=`wc -l ${OUTPUT} | awk '{print $1}'`
+echo "${NSUCCESS} / ${NJOBS} jobs have completed successfully."
+#ls ${DIR}/output_*.root | sort -u > ${OUTPUT}

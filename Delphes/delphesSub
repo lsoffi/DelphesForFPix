@@ -1,0 +1,144 @@
+#!/usr/bin/env perl
+
+use strict;
+use File::Copy;
+use File::Which;
+use Getopt::Long;
+use POSIX;
+use Term::ANSIColor;
+use Cwd 'abs_path';
+use Sys::Hostname;
+use Scalar::Util qw(looks_like_number);
+use Scalar::Util::Numeric qw(isnum isint isfloat);
+
+select ((select (STDOUT), $| = 1)[0]);
+
+sub printHelp;
+sub outputCondor;
+sub outputLxbatch;
+
+my %opt;
+Getopt::Long::Configure ("bundling");
+GetOptions (\%opt, "help|h");
+my $argc = @ARGV;
+
+printHelp () if $opt{"help"};
+printHelp () if $argc != 8;
+
+my %argv;
+$argv{"inputFile"} = $ARGV[0];
+$argv{"puFile"} = $ARGV[1];
+$argv{"minBiasFile"} = $ARGV[2];
+$argv{"errorFile"} = $ARGV[3];
+$argv{"cardFile"} = $ARGV[4];
+$argv{"outputDir"} = $ARGV[5];
+$argv{"nEvents"} = $ARGV[6] + 0;
+$argv{"nJobs"} = $ARGV[7] + 0;
+
+die "Input file does not exist, stopped" if !(-e $argv{"inputFile"});
+die "Pileup file does not exist, stopped" if !(-e $argv{"puFile"});
+die "Input minimum bias file does not exist, stopped" if !(-e $argv{"minBiasFile"});
+die "Input error file does not exist, stopped" if !(-e $argv{"errorFile"});
+die "Delphes card does not exist, stopped" if !(-e $argv{"cardFile"});
+die "Output directory already exists, stopped" if -e $argv{"outputDir"};
+die "Number of events must be a number, stopped" if !(looks_like_number $argv{"nEvents"});
+die "Number of events must be a whole number, stopped" if !(isint $argv{"nEvents"}) || $argv{"nEvents"} < 0;
+die "Number of jobs must be a number, stopped" if !(looks_like_number $argv{"nJobs"});
+die "Number of jobs must be a whole number, stopped" if !(isint $argv{"nJobs"}) || $argv{"nJobs"} < 0;
+
+$argv{"inputFile"} = readlink ($argv{"inputFile"}) if -l $argv{"inputFile"};
+$argv{"puFile"} = readlink ($argv{"puFile"}) if -l $argv{"puFile"};
+$argv{"minBiasFile"} = readlink ($argv{"minBiasFile"}) if -l $argv{"minBiasFile"};
+$argv{"errorFile"} = readlink ($argv{"errorFile"}) if -l $argv{"errorFile"};
+$argv{"cardFile"} = readlink ($argv{"cardFile"}) if -l $argv{"cardFile"};
+$argv{"inputFile"} = abs_path ($argv{"inputFile"});
+$argv{"puFile"} = abs_path ($argv{"puFile"});
+$argv{"minBiasFile"} = abs_path ($argv{"minBiasFile"});
+$argv{"errorFile"} = abs_path ($argv{"errorFile"});
+$argv{"cardFile"} = abs_path ($argv{"cardFile"});
+
+my $delphes;
+$delphes = which ("DelphesCMSFWLite");
+die "DelphesCMSFWLite not found, stopped" if !$delphes;
+
+my $inputFileName = $argv{"inputFile"};
+my $puFileName = $argv{"puFile"};
+my $minBiasFileName = $argv{"minBiasFile"};
+my $errorFileName = $argv{"errorFile"};
+my $cardFileName = $argv{"cardFile"};
+$inputFileName =~ s/^.*\/([^\/]+)$/$1/;
+$puFileName =~ s/^.*\/([^\/]+)$/$1/;
+$minBiasFileName =~ s/^.*\/([^\/]+)$/$1/;
+$errorFileName =~ s/^.*\/([^\/]+)$/$1/;
+$cardFileName =~ s/^.*\/([^\/]+)$/$1/;
+
+mkdir ($argv{"outputDir"}) or die "Failed to create output directory, stopped";
+symlink ($argv{"inputFile"}, $argv{"outputDir"} . "/" . $inputFileName) or die "Failed to create link to input file, stopped";
+symlink ($argv{"puFile"}, $argv{"outputDir"} . "/" . $puFileName) or die "Failed to create link to pileup file, stopped" if ($argv{"puFile"} != $argv{"inputFile"});
+symlink ($argv{"minBiasFile"}, $argv{"outputDir"} . "/" . $minBiasFileName) or die "Failed to create link to input minimum bias file, stopped";
+symlink ($argv{"errorFile"}, $argv{"outputDir"} . "/" . $errorFileName) or die "Failed to create link to input error file, stopped";
+
+my $nJobs = ceil ($argv{"nEvents"} / ceil ($argv{"nEvents"} / $argv{"nJobs"}));
+my $eventsPerJob = ceil ($argv{"nEvents"} / $nJobs);
+
+open (CONFIG_FILE, "<$argv{'cardFile'}") or die "Failed to open Delphes card, stopped";
+my @cardFile = <CONFIG_FILE>;
+close (CONFIG_FILE);
+my $nLines = @cardFile;
+for (my $iLine = 0; $iLine < $nLines; $iLine++)
+  {
+    my $line = $cardFile[$iLine];
+    next if !($line =~ m/[^#]*[ \t]MaxEvents[ \t].*/ || $line =~ m/[^#]*[ \t]SkipEvents[ \t].*/);
+
+    $cardFile[$iLine] = "set MaxEvents $eventsPerJob\n" if $line =~ m/[^#]*[ \t]MaxEvents[ \t].*/;
+    $cardFile[$iLine] = "set SkipEvents $eventsPerJob\n" if $line =~ m/[^#]*[ \t]SkipEvents[ \t].*/;
+  }
+my $cardFile = join ("", @cardFile);
+open (CONFIG_FILE, ">$argv{'outputDir'}/$cardFileName") or die "Failed to write Delphes card, stopped";
+print CONFIG_FILE $cardFile;
+close (CONFIG_FILE);
+
+my $condorFile = "";
+$condorFile .= "Executable           = $delphes\n";
+$condorFile .= "\n";
+$condorFile .= "Universe             = vanilla\n";
+$condorFile .= "Getenv               = True\n";
+$condorFile .= "Arguments            = $cardFileName output_\$(Process).root $inputFileName $puFileName \$(Process)\n";
+$condorFile .= "\n";
+$condorFile .= "Output               = condor_\$(Process).out\n";
+$condorFile .= "Error                = condor_\$(Process).err\n";
+$condorFile .= "Log                  = condor_\$(Process).log\n";
+$condorFile .= "\n";
+$condorFile .= "Requirements         = Memory > 1900\n";
+$condorFile .= "Hold                 = True\n";
+$condorFile .= "\n";
+$condorFile .= "Queue $nJobs\n";
+open (CONDOR_FILE, ">$argv{'outputDir'}/condor.sub") or die "Failed to write Condor submission file, stopped";
+print CONDOR_FILE $condorFile;
+close (CONDOR_FILE);
+
+chdir ($argv{"outputDir"});
+system ("LD_LIBRARY_PATH=/usr/lib64/condor:\$LD_LIBRARY_PATH condor_submit condor.sub");
+
+sub
+printHelp
+{
+  my $exeName = $0;
+  $exeName =~ s/^.*\/([^\/]*)$/$1/;
+
+  print "Usage: $exeName [OPTION]... INPUT PILEUP MINBIAS ERROR DELPHES_CARD OUT_DIR NEVENTS NJOBS\n";
+  print "Submits Delphes jobs to the OSU Tier 3 compute nodes using Condor.\n";
+  print "\n";
+  printf "%-29s%s\n", "  -h, --help", "print this help message";
+  print "\n";
+  print "INPUT is a ROOT file containing generated events of interest which are to be\n";
+  print "simulated with Delphes. PILEUP is a ROOT file containing fake tracks and tracks\n";
+  print "and neutral particles from pileup. MINBIAS is a ROOT file containing\n";
+  print "generated minimum bias events to be used in the simulation of pileup. ERROR is\n";
+  print "a ROOT file containing track parameter resolutions. DELPHES_CARD is the Tcl\n";
+  print "configuration file for Delphes. Finally, OUT_DIR is the directory in which the\n";
+  print "output from the Condor jobs will be stored, and NEVENTS and NJOBS are the\n";
+  print "desired number of events to process and number of jobs to launch, respectively.\n";
+
+  exit;
+}
