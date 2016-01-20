@@ -1,0 +1,235 @@
+DEBUG 2015-12-02 09:47:57,919: 	 Executing command: 'submit'
+DEBUG 2015-12-02 09:47:57,921: 	 Found CRAB cache file /afs/cern.ch/user/s/soffi/.crab3
+DEBUG 2015-12-02 09:47:57,979: 	 Checking credentials
+DEBUG 2015-12-02 09:47:57,980: 	 Found proxy file /tmp/x509up_u57603
+DEBUG 2015-12-02 09:47:57,980: 	 Getting proxy life time left
+DEBUG 2015-12-02 09:47:58,787: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u57603 -timeleft
+ output : 43123
+
+ error: 
+ retcode : 0
+DEBUG 2015-12-02 09:47:59,295: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u57603 -actimeleft
+ output : 
+ error: No VOMS attributes found!
+
+ retcode : 1
+DEBUG 2015-12-02 09:47:59,296: 	 Proxy valid for 00:00:00 hours
+DEBUG 2015-12-02 09:47:59,296: 	 Creating new proxy for 24:00 hours with VO group '' and VO role 'NULL'.
+DEBUG 2015-12-02 09:50:19,735: 	 Executing : 
+ command : voms-proxy-init -voms cms:/cms -valid 24:00 -rfc
+ output : None
+ error: None
+ retcode : 0
+DEBUG 2015-12-02 09:50:20,346: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u57603 -timeleft
+ output : 86398
+
+ error: 
+ retcode : 0
+DEBUG 2015-12-02 09:50:20,853: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u57603 -actimeleft
+ output : 86398
+
+ error: 
+ retcode : 0
+DEBUG 2015-12-02 09:50:21,460: 	 Executing : 
+ command : env X509_USER_PROXY=/tmp/x509up_u57603 voms-proxy-info -fqan
+ output : /cms/Role=NULL/Capability=NULL
+
+ error: 
+ retcode : 0
+DEBUG 2015-12-02 09:50:21,460: 	 Proxy created.
+INFO 2015-12-02 09:50:21,460: 	 Will use CRAB configuration file crabConfig.py
+DEBUG 2015-12-02 09:50:21,461: 	 Loading CRAB configuration file.
+DEBUG 2015-12-02 09:50:21,510: 	 Will use CRAB Analysis plugin (i.e. will run an analysis job type).
+DEBUG 2015-12-02 09:50:21,640: 	 Executing : 
+ command : openssl x509 -in ~/.globus/usercert.pem -subject -noout
+ output : subject= /DC=ch/DC=cern/OU=Organic Units/OU=Users/CN=soffi/CN=703603/CN=Livia Soffi
+
+ error: WARNING: can't open config file: /build/dmwmbld/srv/state/dmwmbld/builds/comp_gcc481/w/tmp/BUILDROOT/ef35842be28ecca6d10195ea8182a5ac/build/dmwmbld/srv/state/dmwmbld/builds/comp_gcc481/w/slc6_amd64_gcc481/external/openssl/1.0.1p/ssl/openssl.cnf
+
+ retcode : 0
+DEBUG 2015-12-02 09:50:21,640: 	 Checking credentials
+DEBUG 2015-12-02 09:50:21,641: 	 Found proxy file /tmp/x509up_u57603
+DEBUG 2015-12-02 09:50:21,641: 	 Getting proxy life time left
+DEBUG 2015-12-02 09:50:22,146: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u57603 -timeleft
+ output : 86396
+
+ error: 
+ retcode : 0
+DEBUG 2015-12-02 09:50:22,652: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u57603 -actimeleft
+ output : 86396
+
+ error: 
+ retcode : 0
+DEBUG 2015-12-02 09:50:22,652: 	 Proxy valid for 23:59:56 hours
+DEBUG 2015-12-02 09:50:23,262: 	 Executing : 
+ command : env X509_USER_PROXY=/tmp/x509up_u57603 voms-proxy-info -fqan
+ output : /cms/Role=NULL/Capability=NULL
+
+ error: 
+ retcode : 0
+DEBUG 2015-12-02 09:50:23,511: 	 Registering user credentials for server /DC=ch/DC=cern/OU=computers/CN=vocms(045|052|021|031|0118|0118a|0119).cern.ch
+DEBUG 2015-12-02 09:50:23,622: 	 Executing : 
+ command : openssl x509 -in ~/.globus/usercert.pem -subject -noout
+ output : subject= /DC=ch/DC=cern/OU=Organic Units/OU=Users/CN=soffi/CN=703603/CN=Livia Soffi
+
+ error: WARNING: can't open config file: /build/dmwmbld/srv/state/dmwmbld/builds/comp_gcc481/w/tmp/BUILDROOT/ef35842be28ecca6d10195ea8182a5ac/build/dmwmbld/srv/state/dmwmbld/builds/comp_gcc481/w/slc6_amd64_gcc481/external/openssl/1.0.1p/ssl/openssl.cnf
+
+ retcode : 0
+DEBUG 2015-12-02 09:50:23,622: 	 Getting myproxy life time left for myproxy.cern.ch
+DEBUG 2015-12-02 09:50:23,622: 	 Calculating hash of /DC=ch/DC=cern/OU=Organic Units/OU=Users/CN=soffi/CN=703603/CN=Livia Soffi_cmsweb.cern.ch for credential name
+DEBUG 2015-12-02 09:50:24,327: 	 Executing : 
+ command : myproxy-info -l c6b3f0d3fcbb5529eb4d33881671cb4250d8245e -s myproxy.cern.ch
+ output : username: c6b3f0d3fcbb5529eb4d33881671cb4250d8245e
+owner: /DC=ch/DC=cern/OU=Organic Units/OU=Users/CN=soffi/CN=703603/CN=Livia Soffi
+  renewal policy: /DC=ch/DC=cern/OU=computers/CN=vocms(045|052|021|031|0118|0118a|0119).cern.ch
+  trusted retrieval policy: /DC=ch/DC=cern/OU=computers/CN=vocms(045|052|021|031|0118|0118a|0119).cern.ch
+  timeleft: 438:20:39  (18.3 days)
+
+ error: 
+ retcode : 0
+DEBUG 2015-12-02 09:50:24,328: 	 Myproxy is valid: 1578039
+DEBUG 2015-12-02 09:50:24,328: 	 Command use: submit
+DEBUG 2015-12-02 09:50:24,328: 	 Options use: ['--config', 'crabConfig.py']
+DEBUG 2015-12-02 09:50:26,183: 	 CRABClient version: 3.3.1511
+DEBUG 2015-12-02 09:50:26,183: 	 Instance is prod
+DEBUG 2015-12-02 09:50:26,183: 	 Server base url is cmsweb.cern.ch
+DEBUG 2015-12-02 09:50:26,183: 	 Command url /crabserver/prod/workflow
+DEBUG 2015-12-02 09:50:26,183: 	 Started submission
+DEBUG 2015-12-02 09:50:26,183: 	 Working on /afs/cern.ch/work/s/soffi/CMSSW620-SLHC-Delphes/src/VFPix/FullSimStudies/test/crab_ggh_HToZZTo4L_InputForDelphes_1202
+DEBUG 2015-12-02 09:50:27,591: 	 Loading required information from the environment
+DEBUG 2015-12-02 09:50:27,591: 	 Found CMSSW_6_2_0_SLHC23_patch1 for slc6_amd64_gcc472 with base /afs/cern.ch/work/s/soffi/CMSSW620-SLHC-Delphes
+DEBUG 2015-12-02 09:50:27,625: 	 UNIQUE NAME: tarUUID bfb11a6f-e0c3-4645-a054-078af87430b0 
+DEBUG 2015-12-02 09:50:27,626: 	 self.config: from WMCore.Configuration import Configuration
+config = Configuration()
+config.section_('General')
+config.General.requestName = 'ggh_HToZZTo4L_InputForDelphes_1202'
+config.section_('JobType')
+config.JobType.psetName = 'pileup_cfg.py'
+config.JobType.pluginName = 'Analysis'
+config.JobType.allowUndistributedCMSSW = True
+config.section_('Data')
+config.Data.inputDataset = '/GluGluToHToZZTo4L_M-125_14TeV-powheg-pythia6/TP2023SHCALDR-SHCALMar26_PU140BX25_PH2_1K_FB_V6-v1/GEN-SIM-RECO'
+config.Data.outputDatasetTag = 'GGH_HToZZTo4L_InputForDelphes_1202'
+config.Data.publishDBS = 'phys03'
+config.Data.publication = False
+config.Data.unitsPerJob = 1
+config.Data.inputDBS = 'global'
+config.Data.splitting = 'FileBased'
+config.Data.outLFNDirBase = '/store/user/soffi/'
+config.section_('User')
+config.section_('Site')
+config.Site.storageSite = 'T2_IT_Rome'
+
+DEBUG 2015-12-02 09:50:27,626: 	 self.config.JobType.psetName: pileup_cfg.py
+INFO 2015-12-02 09:50:27,626: 	 Importing CMSSW configuration pileup_cfg.py
+INFO 2015-12-02 09:50:28,302: 	 Finished importing CMSSW configuration pileup_cfg.py
+DEBUG 2015-12-02 09:50:28,302: 	 Writing CMSSW configuration to /afs/cern.ch/work/s/soffi/CMSSW620-SLHC-Delphes/src/VFPix/FullSimStudies/test/crab_ggh_HToZZTo4L_InputForDelphes_1202/inputs/PSet.py
+DEBUG 2015-12-02 09:50:28,323: 	 The following EDM output files will be collected: ['output.root']
+DEBUG 2015-12-02 09:50:28,323: 	 The following TFile output files will be collected: []
+DEBUG 2015-12-02 09:50:28,324: 	 The following user output files will be collected: []
+DEBUG 2015-12-02 09:50:28,324: 	 Loading required information from the environment
+DEBUG 2015-12-02 09:50:28,324: 	 Found CMSSW_6_2_0_SLHC23_patch1 for slc6_amd64_gcc472 with base /afs/cern.ch/work/s/soffi/CMSSW620-SLHC-Delphes
+DEBUG 2015-12-02 09:50:28,324: 	 Making tarball in /afs/cern.ch/work/s/soffi/CMSSW620-SLHC-Delphes/src/VFPix/FullSimStudies/test/crab_ggh_HToZZTo4L_InputForDelphes_1202/inputs/bfb11a6f-e0c3-4645-a054-078af87430b0default.tgz
+DEBUG 2015-12-02 09:50:28,326: 	 Checking directory /afs/cern.ch/work/s/soffi/CMSSW620-SLHC-Delphes/lib
+DEBUG 2015-12-02 09:50:28,326: 	 Adding directory /afs/cern.ch/work/s/soffi/CMSSW620-SLHC-Delphes/lib to tarball
+DEBUG 2015-12-02 09:50:28,577: 	 Checking directory /afs/cern.ch/work/s/soffi/CMSSW620-SLHC-Delphes/biglib
+DEBUG 2015-12-02 09:50:28,577: 	 Adding directory /afs/cern.ch/work/s/soffi/CMSSW620-SLHC-Delphes/biglib to tarball
+DEBUG 2015-12-02 09:50:28,579: 	 Checking directory /afs/cern.ch/work/s/soffi/CMSSW620-SLHC-Delphes/module
+DEBUG 2015-12-02 09:50:30,587: 	 Uploading archive /afs/cern.ch/work/s/soffi/CMSSW620-SLHC-Delphes/src/VFPix/FullSimStudies/test/crab_ggh_HToZZTo4L_InputForDelphes_1202/inputs/bfb11a6f-e0c3-4645-a054-078af87430b0default.tgz to the CRAB cache. Using URI https://cmsweb.cern.ch/crabcache
+DEBUG 2015-12-02 09:50:30,871: 	 Result uploading input files: b7d740ba6e696ee3bdb932e3260c4872474d343e525feb312759873bb1549962.tar.gz 
+INFO 2015-12-02 09:50:30,871: 	 Sending the request to the server
+DEBUG 2015-12-02 09:50:30,871: 	 Submitting {'maxjobruntime': 1250, 'ignorelocality': 0, 'savelogsflag': 0, 'useparent': 0, 'asyncdest': 'T2_IT_Rome', 'algoargs': 1, 'cachefilename': 'b7d740ba6e696ee3bdb932e3260c4872474d343e525feb312759873bb1549962.tar.gz', 'numcores': 1, 'addoutputfiles': [], 'generator': 'pythia', 'maxmemory': 2000, 'publishdbsurl': 'https://cmsweb.cern.ch/dbs/prod/phys03/DBSWriter', 'priority': 10, 'jobsw': 'CMSSW_6_2_0_SLHC23_patch1', 'edmoutfiles': ['output.root'], 'userfiles': [], 'primarydataset': '', 'inputdata': '/GluGluToHToZZTo4L_M-125_14TeV-powheg-pythia6/TP2023SHCALDR-SHCALMar26_PU140BX25_PH2_1K_FB_V6-v1/GEN-SIM-RECO', 'lfn': '/store/user/soffi/', 'dryrun': 0, 'workflow': 'crab_ggh_HToZZTo4L_InputForDelphes_1202', 'adduserfiles': [], 'nonprodsw': 1, 'tfileoutfiles': [], 'oneEventMode': 0, 'cacheurl': 'https://cmsweb.cern.ch/crabcache', 'saveoutput': 1, 'publication': 0, 'jobarch': 'slc6_amd64_gcc472', 'totalunits': 0, 'splitalgo': 'FileBased', 'nonvaliddata': 0, 'dbsurl': 'https://cmsweb.cern.ch/dbs/prod/global/DBSReader', 'publishgroupname': 0, 'jobtype': 'Analysis', 'publishname2': 'GGH_HToZZTo4L_InputForDelphes_1202'} 
+DEBUG 2015-12-02 09:50:30,873: 	 Encoded submit request: maxjobruntime=1250&ignorelocality=0&savelogsflag=0&useparent=0&asyncdest=T2_IT_Rome&algoargs=1&cachefilename=b7d740ba6e696ee3bdb932e3260c4872474d343e525feb312759873bb1549962.tar.gz&numcores=1&generator=pythia&maxmemory=2000&publishdbsurl=https%3A%2F%2Fcmsweb.cern.ch%2Fdbs%2Fprod%2Fphys03%2FDBSWriter&priority=10&jobsw=CMSSW_6_2_0_SLHC23_patch1&primarydataset=&inputdata=%2FGluGluToHToZZTo4L_M-125_14TeV-powheg-pythia6%2FTP2023SHCALDR-SHCALMar26_PU140BX25_PH2_1K_FB_V6-v1%2FGEN-SIM-RECO&lfn=%2Fstore%2Fuser%2Fsoffi%2F&dryrun=0&workflow=crab_ggh_HToZZTo4L_InputForDelphes_1202&nonprodsw=1&oneEventMode=0&cacheurl=https%3A%2F%2Fcmsweb.cern.ch%2Fcrabcache&saveoutput=1&publication=0&jobarch=slc6_amd64_gcc472&totalunits=0&splitalgo=FileBased&nonvaliddata=0&dbsurl=https%3A%2F%2Fcmsweb.cern.ch%2Fdbs%2Fprod%2Fglobal%2FDBSReader&publishgroupname=0&jobtype=Analysis&publishname2=GGH_HToZZTo4L_InputForDelphes_1202&edmoutfiles=output.root
+DEBUG 2015-12-02 09:50:31,320: 	 Result: {'result': [{'RequestName': '151202_085031:soffi_crab_ggh_HToZZTo4L_InputForDelphes_1202'}]}
+INFO 2015-12-02 09:50:31,324: 	 Success: Your task has been delivered to the CRAB3 server.
+INFO 2015-12-02 09:50:31,324: 	 Task name: 151202_085031:soffi_crab_ggh_HToZZTo4L_InputForDelphes_1202
+INFO 2015-12-02 09:50:31,324: 	 Please use 'crab status' to check how the submission process proceeds.
+DEBUG 2015-12-02 09:50:31,324: 	 About to return
+INFO 2015-12-02 09:50:31,337: 	 Log file is /afs/cern.ch/work/s/soffi/CMSSW620-SLHC-Delphes/src/VFPix/FullSimStudies/test/crab_ggh_HToZZTo4L_InputForDelphes_1202/crab.log
+DEBUG 2015-12-02 09:57:53,717: 	 Executing command: 'status'
+DEBUG 2015-12-02 09:57:53,717: 	 Found CRAB cache file /afs/cern.ch/user/s/soffi/.crab3
+DEBUG 2015-12-02 09:57:53,730: 	 Checking credentials
+DEBUG 2015-12-02 09:57:53,731: 	 Found proxy file /tmp/x509up_u57603
+DEBUG 2015-12-02 09:57:53,731: 	 Getting proxy life time left
+DEBUG 2015-12-02 09:57:54,336: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u57603 -timeleft
+ output : 85944
+
+ error: 
+ retcode : 0
+DEBUG 2015-12-02 09:57:55,048: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u57603 -actimeleft
+ output : 85944
+
+ error: 
+ retcode : 0
+DEBUG 2015-12-02 09:57:55,048: 	 Proxy valid for 23:52:24 hours
+DEBUG 2015-12-02 09:57:55,166: 	 Executing : 
+ command : openssl x509 -in ~/.globus/usercert.pem -subject -noout
+ output : subject= /DC=ch/DC=cern/OU=Organic Units/OU=Users/CN=soffi/CN=703603/CN=Livia Soffi
+
+ error: WARNING: can't open config file: /build/dmwmbld/srv/state/dmwmbld/builds/comp_gcc481/w/tmp/BUILDROOT/ef35842be28ecca6d10195ea8182a5ac/build/dmwmbld/srv/state/dmwmbld/builds/comp_gcc481/w/slc6_amd64_gcc481/external/openssl/1.0.1p/ssl/openssl.cnf
+
+ retcode : 0
+DEBUG 2015-12-02 09:57:55,166: 	 Checking credentials
+DEBUG 2015-12-02 09:57:55,166: 	 Found proxy file /tmp/x509up_u57603
+DEBUG 2015-12-02 09:57:55,166: 	 Getting proxy life time left
+DEBUG 2015-12-02 09:57:55,875: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u57603 -timeleft
+ output : 85943
+
+ error: 
+ retcode : 0
+DEBUG 2015-12-02 09:57:56,681: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u57603 -actimeleft
+ output : 85942
+
+ error: 
+ retcode : 0
+DEBUG 2015-12-02 09:57:56,681: 	 Proxy valid for 23:52:23 hours
+DEBUG 2015-12-02 09:57:56,988: 	 Registering user credentials for server /DC=ch/DC=cern/OU=computers/CN=vocms(045|052|021|031|0118|0118a|0119).cern.ch
+DEBUG 2015-12-02 09:57:57,103: 	 Executing : 
+ command : openssl x509 -in ~/.globus/usercert.pem -subject -noout
+ output : subject= /DC=ch/DC=cern/OU=Organic Units/OU=Users/CN=soffi/CN=703603/CN=Livia Soffi
+
+ error: WARNING: can't open config file: /build/dmwmbld/srv/state/dmwmbld/builds/comp_gcc481/w/tmp/BUILDROOT/ef35842be28ecca6d10195ea8182a5ac/build/dmwmbld/srv/state/dmwmbld/builds/comp_gcc481/w/slc6_amd64_gcc481/external/openssl/1.0.1p/ssl/openssl.cnf
+
+ retcode : 0
+DEBUG 2015-12-02 09:57:57,104: 	 Getting myproxy life time left for myproxy.cern.ch
+DEBUG 2015-12-02 09:57:57,104: 	 Calculating hash of /DC=ch/DC=cern/OU=Organic Units/OU=Users/CN=soffi/CN=703603/CN=Livia Soffi_cmsweb.cern.ch for credential name
+DEBUG 2015-12-02 09:57:58,110: 	 Executing : 
+ command : myproxy-info -l c6b3f0d3fcbb5529eb4d33881671cb4250d8245e -s myproxy.cern.ch
+ output : username: c6b3f0d3fcbb5529eb4d33881671cb4250d8245e
+owner: /DC=ch/DC=cern/OU=Organic Units/OU=Users/CN=soffi/CN=703603/CN=Livia Soffi
+  renewal policy: /DC=ch/DC=cern/OU=computers/CN=vocms(045|052|021|031|0118|0118a|0119).cern.ch
+  trusted retrieval policy: /DC=ch/DC=cern/OU=computers/CN=vocms(045|052|021|031|0118|0118a|0119).cern.ch
+  timeleft: 438:13:05  (18.3 days)
+
+ error: 
+ retcode : 0
+DEBUG 2015-12-02 09:57:58,111: 	 Myproxy is valid: 1577585
+DEBUG 2015-12-02 09:57:58,111: 	 Command use: status
+DEBUG 2015-12-02 09:57:58,111: 	 Options use: ['--dir', 'crab_ggh_HToZZTo4L_InputForDelphes_1202']
+DEBUG 2015-12-02 09:57:58,387: 	 CRABClient version: 3.3.1511
+DEBUG 2015-12-02 09:57:58,387: 	 Instance is prod
+DEBUG 2015-12-02 09:57:58,387: 	 Server base url is cmsweb.cern.ch
+DEBUG 2015-12-02 09:57:58,387: 	 Command url /crabserver/prod/workflow
+DEBUG 2015-12-02 09:57:58,387: 	 Looking up detailed status of task 151202_085031:soffi_crab_ggh_HToZZTo4L_InputForDelphes_1202
+DEBUG 2015-12-02 09:58:00,239: 	 {'status': 'SUBMITTED', 'schedd': 'crab3-5@vocms059.cern.ch', 'saveLogs': 'F', 'jobsPerStatus': {'idle': 127, 'running': 204}, 'jobs': {'216': {'State': 'idle'}, '217': {'State': 'idle'}, '214': {'State': 'idle'}, '215': {'State': 'idle'}, '212': {'State': 'running'}, '213': {'State': 'running'}, '210': {'State': 'running'}, '211': {'State': 'running'}, '313': {'State': 'idle'}, '264': {'State': 'idle'}, '218': {'State': 'idle'}, '219': {'State': 'idle'}, '133': {'State': 'running'}, '132': {'State': 'running'}, '131': {'State': 'running'}, '130': {'State': 'running'}, '137': {'State': 'running'}, '136': {'State': 'running'}, '135': {'State': 'running'}, '134': {'State': 'running'}, '95': {'State': 'running'}, '139': {'State': 'running'}, '138': {'State': 'running'}, '225': {'State': 'idle'}, '24': {'State': 'running'}, '25': {'State': 'running'}, '26': {'State': 'running'}, '27': {'State': 'running'}, '20': {'State': 'running'}, '21': {'State': 'idle'}, '22': {'State': 'running'}, '23': {'State': 'running'}, '223': {'State': 'idle'}, '28': {'State': 'running'}, '29': {'State': 'running'}, '222': {'State': 'idle'}, '289': {'State': 'idle'}, '288': {'State': 'idle'}, '4': {'State': 'idle'}, '281': {'State': 'idle'}, '8': {'State': 'running'}, '283': {'State': 'idle'}, '282': {'State': 'idle'}, '285': {'State': 'idle'}, '284': {'State': 'idle'}, '287': {'State': 'idle'}, '286': {'State': 'idle'}, '227': {'State': 'idle'}, '13': {'State': 'running'}, '120': {'State': 'running'}, '121': {'State': 'running'}, '122': {'State': 'running'}, '123': {'State': 'running'}, '124': {'State': 'running'}, '125': {'State': 'running'}, '265': {'State': 'idle'}, '127': {'State': 'running'}, '128': {'State': 'running'}, '129': {'State': 'running'}, '269': {'State': 'idle'}, '268': {'State': 'idle'}, '69': {'State': 'running'}, '328': {'State': 'idle'}, '91': {'State': 'running'}, '59': {'State': 'running'}, '58': {'State': 'running'}, '55': {'State': 'running'}, '54': {'State': 'running'}, '57': {'State': 'running'}, '56': {'State': 'running'}, '51': {'State': 'running'}, '50': {'State': 'running'}, '53': {'State': 'running'}, '52': {'State': 'running'}, '63': {'State': 'running'}, '298': {'State': 'idle'}, '299': {'State': 'idle'}, '296': {'State': 'idle'}, '297': {'State': 'idle'}, '294': {'State': 'idle'}, '295': {'State': 'idle'}, '292': {'State': 'idle'}, '293': {'State': 'idle'}, '290': {'State': 'idle'}, '291': {'State': 'idle'}, '93': {'State': 'running'}, '319': {'State': 'idle'}, '318': {'State': 'idle'}, '199': {'State': 'running'}, '198': {'State': 'running'}, '147': {'State': 'running'}, '195': {'State': 'running'}, '312': {'State': 'idle'}, '197': {'State': 'running'}, '310': {'State': 'idle'}, '191': {'State': 'running'}, '190': {'State': 'running'}, '193': {'State': 'running'}, '192': {'State': 'running'}, '115': {'State': 'running'}, '271': {'State': 'idle'}, '88': {'State': 'running'}, '89': {'State': 'running'}, '111': {'State': 'running'}, '110': {'State': 'running'}, '113': {'State': 'running'}, '112': {'State': 'running'}, '82': {'State': 'idle'}, '83': {'State': 'running'}, '80': {'State': 'running'}, '81': {'State': 'running'}, '119': {'State': 'running'}, '118': {'State': 'running'}, '84': {'State': 'running'}, '85': {'State': 'running'}, '174': {'State': 'running'}, '140': {'State': 'running'}, '173': {'State': 'running'}, '260': {'State': 'idle'}, '141': {'State': 'running'}, '226': {'State': 'idle'}, '172': {'State': 'running'}, '3': {'State': 'idle'}, '171': {'State': 'running'}, '7': {'State': 'running'}, '146': {'State': 'running'}, '231': {'State': 'idle'}, '92': {'State': 'running'}, '170': {'State': 'running'}, '308': {'State': 'idle'}, '309': {'State': 'idle'}, '300': {'State': 'idle'}, '301': {'State': 'idle'}, '302': {'State': 'idle'}, '303': {'State': 'idle'}, '304': {'State': 'idle'}, '305': {'State': 'idle'}, '306': {'State': 'idle'}, '307': {'State': 'idle'}, '245': {'State': 'idle'}, '244': {'State': 'idle'}, '247': {'State': 'idle'}, '109': {'State': 'running'}, '241': {'State': 'idle'}, '240': {'State': 'idle'}, '243': {'State': 'idle'}, '242': {'State': 'idle'}, '102': {'State': 'running'}, '103': {'State': 'running'}, '100': {'State': 'running'}, '101': {'State': 'running'}, '106': {'State': 'running'}, '107': {'State': 'running'}, '104': {'State': 'running'}, '105': {'State': 'running'}, '39': {'State': 'running'}, '38': {'State': 'running'}, '33': {'State': 'running'}, '32': {'State': 'running'}, '31': {'State': 'running'}, '30': {'State': 'running'}, '37': {'State': 'running'}, '108': {'State': 'running'}, '35': {'State': 'running'}, '34': {'State': 'running'}, '145': {'State': 'running'}, '246': {'State': 'idle'}, '94': {'State': 'running'}, '252': {'State': 'idle'}, '70': {'State': 'running'}, '331': {'State': 'idle'}, '330': {'State': 'idle'}, '60': {'State': 'running'}, '61': {'State': 'running'}, '258': {'State': 'idle'}, '259': {'State': 'idle'}, '64': {'State': 'running'}, '65': {'State': 'running'}, '179': {'State': 'running'}, '178': {'State': 'running'}, '177': {'State': 'running'}, '176': {'State': 'running'}, '175': {'State': 'running'}, '251': {'State': 'idle'}, '256': {'State': 'idle'}, '257': {'State': 'idle'}, '254': {'State': 'idle'}, '255': {'State': 'idle'}, '272': {'State': 'idle'}, '249': {'State': 'idle'}, '185': {'State': 'running'}, '253': {'State': 'idle'}, '248': {'State': 'idle'}, '182': {'State': 'running'}, '183': {'State': 'running'}, '180': {'State': 'running'}, '181': {'State': 'idle'}, '186': {'State': 'running'}, '187': {'State': 'running'}, '184': {'State': 'running'}, '194': {'State': 'running'}, '188': {'State': 'running'}, '189': {'State': 'running'}, '311': {'State': 'idle'}, '196': {'State': 'running'}, '221': {'State': 'idle'}, '97': {'State': 'running'}, '276': {'State': 'idle'}, '317': {'State': 'idle'}, '6': {'State': 'running'}, '142': {'State': 'running'}, '316': {'State': 'idle'}, '99': {'State': 'running'}, '98': {'State': 'running'}, '168': {'State': 'running'}, '315': {'State': 'idle'}, '229': {'State': 'idle'}, '228': {'State': 'idle'}, '164': {'State': 'running'}, '165': {'State': 'running'}, '166': {'State': 'running'}, '167': {'State': 'running'}, '160': {'State': 'running'}, '161': {'State': 'running'}, '162': {'State': 'running'}, '163': {'State': 'running'}, '11': {'State': 'running'}, '10': {'State': 'running'}, '220': {'State': 'idle'}, '12': {'State': 'running'}, '15': {'State': 'running'}, '14': {'State': 'running'}, '66': {'State': 'running'}, '114': {'State': 'running'}, '19': {'State': 'running'}, '18': {'State': 'running'}, '143': {'State': 'running'}, '314': {'State': 'idle'}, '117': {'State': 'running'}, '273': {'State': 'idle'}, '274': {'State': 'idle'}, '17': {'State': 'running'}, '275': {'State': 'idle'}, '151': {'State': 'running'}, '150': {'State': 'running'}, '153': {'State': 'running'}, '152': {'State': 'running'}, '116': {'State': 'running'}, '250': {'State': 'idle'}, '157': {'State': 'idle'}, '156': {'State': 'running'}, '159': {'State': 'running'}, '158': {'State': 'running'}, '62': {'State': 'running'}, '277': {'State': 'idle'}, '36': {'State': 'running'}, '278': {'State': 'idle'}, '90': {'State': 'running'}, '238': {'State': 'idle'}, '239': {'State': 'idle'}, '67': {'State': 'running'}, '234': {'State': 'idle'}, '235': {'State': 'idle'}, '16': {'State': 'running'}, '237': {'State': 'idle'}, '230': {'State': 'idle'}, '236': {'State': 'idle'}, '232': {'State': 'idle'}, '233': {'State': 'idle'}, '224': {'State': 'idle'}, '280': {'State': 'idle'}, '48': {'State': 'running'}, '49': {'State': 'running'}, '46': {'State': 'running'}, '86': {'State': 'running'}, '44': {'State': 'running'}, '45': {'State': 'running'}, '42': {'State': 'running'}, '43': {'State': 'running'}, '40': {'State': 'running'}, '87': {'State': 'running'}, '322': {'State': 'idle'}, '323': {'State': 'idle'}, '320': {'State': 'idle'}, '321': {'State': 'idle'}, '5': {'State': 'idle'}, '327': {'State': 'idle'}, '324': {'State': 'idle'}, '325': {'State': 'idle'}, '9': {'State': 'running'}, '155': {'State': 'running'}, '329': {'State': 'idle'}, '201': {'State': 'running'}, '200': {'State': 'running'}, '203': {'State': 'running'}, '202': {'State': 'running'}, '205': {'State': 'running'}, '204': {'State': 'running'}, '207': {'State': 'running'}, '206': {'State': 'running'}, '209': {'State': 'running'}, '208': {'State': 'running'}, '148': {'State': 'running'}, '149': {'State': 'running'}, '77': {'State': 'running'}, '76': {'State': 'running'}, '75': {'State': 'running'}, '74': {'State': 'running'}, '73': {'State': 'running'}, '72': {'State': 'running'}, '71': {'State': 'running'}, '68': {'State': 'running'}, '154': {'State': 'running'}, '96': {'State': 'running'}, '79': {'State': 'running'}, '78': {'State': 'running'}, '2': {'State': 'idle'}, '263': {'State': 'idle'}, '144': {'State': 'running'}, '262': {'State': 'idle'}, '261': {'State': 'idle'}, '266': {'State': 'idle'}, '270': {'State': 'idle'}, '41': {'State': 'running'}, '1': {'State': 'idle'}, '47': {'State': 'running'}, '279': {'State': 'idle'}, '267': {'State': 'idle'}, '326': {'State': 'idle'}, '126': {'State': 'running'}, '169': {'State': 'running'}}, 'publication': {'disabled': []}, 'taskWarningMsg': [], 'publicationFailures': {}, 'outdatasets': None, 'statusFailureMsg': '', 'taskFailureMsg': '', 'failedJobdefs': 0, 'ASOURL': 'https://cmsweb.cern.ch/couchdb', 'totalJobdefs': 0, 'jobSetID': '151202_085031:soffi_crab_ggh_HToZZTo4L_InputForDelphes_1202', 'jobdefErrors': [], 'collector': 'cmssrv221.fnal.gov,vocms099.cern.ch', 'jobList': [['idle', 216], ['idle', 217], ['idle', 214], ['idle', 215], ['running', 212], ['running', 213], ['running', 210], ['running', 211], ['running', 165], ['idle', 264], ['idle', 265], ['idle', 218], ['running', 133], ['running', 132], ['running', 131], ['running', 130], ['running', 137], ['running', 136], ['running', 135], ['running', 134], ['running', 139], ['running', 138], ['running', 166], ['running', 24], ['running', 25], ['running', 26], ['running', 27], ['running', 20], ['idle', 21], ['running', 22], ['running', 23], ['running', 160], ['running', 28], ['running', 29], ['running', 161], ['idle', 289], ['idle', 288], ['idle', 4], ['idle', 331], ['idle', 281], ['running', 8], ['idle', 283], ['running', 163], ['idle', 285], ['idle', 284], ['idle', 287], ['idle', 286], ['running', 119], ['idle', 271], ['idle', 258], ['running', 120], ['running', 121], ['running', 122], ['running', 123], ['running', 124], ['running', 125], ['running', 126], ['running', 127], ['running', 128], ['running', 129], ['idle', 269], ['idle', 219], ['running', 167], ['running', 118], ['running', 59], ['running', 58], ['running', 55], ['running', 54], ['running', 57], ['running', 56], ['running', 51], ['running', 50], ['running', 53], ['running', 52], ['idle', 259], ['idle', 312], ['idle', 298], ['idle', 299], ['idle', 296], ['idle', 297], ['idle', 294], ['idle', 295], ['idle', 292], ['idle', 293], ['idle', 290], ['idle', 291], ['running', 164], ['running', 201], ['idle', 319], ['idle', 318], ['running', 199], ['running', 179], ['running', 200], ['running', 195], ['running', 194], ['running', 197], ['running', 178], ['running', 191], ['running', 190], ['running', 193], ['running', 192], ['running', 115], ['running', 114], ['running', 88], ['running', 89], ['running', 111], ['running', 110], ['running', 113], ['running', 112], ['idle', 82], ['running', 83], ['running', 80], ['running', 81], ['running', 86], ['running', 87], ['running', 84], ['running', 85], ['idle', 268], ['idle', 251], ['idle', 304], ['running', 198], ['idle', 256], ['running', 206], ['idle', 226], ['idle', 257], ['idle', 3], ['running', 177], ['idle', 254], ['running', 7], ['idle', 247], ['idle', 273], ['idle', 255], ['idle', 308], ['idle', 309], ['idle', 300], ['idle', 301], ['idle', 302], ['idle', 303], ['idle', 225], ['idle', 305], ['idle', 306], ['idle', 307], ['idle', 245], ['idle', 244], ['running', 108], ['running', 109], ['idle', 241], ['idle', 240], ['idle', 243], ['idle', 242], ['running', 102], ['running', 103], ['running', 100], ['running', 101], ['running', 106], ['running', 107], ['running', 104], ['running', 105], ['running', 39], ['running', 38], ['running', 33], ['running', 32], ['running', 31], ['running', 30], ['running', 37], ['running', 36], ['running', 35], ['running', 34], ['idle', 246], ['idle', 310], ['idle', 282], ['idle', 252], ['running', 205], ['idle', 223], ['running', 176], ['idle', 330], ['running', 60], ['running', 61], ['running', 62], ['running', 63], ['running', 64], ['running', 65], ['running', 66], ['running', 67], ['running', 68], ['running', 69], ['running', 175], ['running', 174], ['running', 173], ['running', 172], ['running', 171], ['running', 170], ['running', 203], ['idle', 222], ['idle', 181], ['idle', 253], ['idle', 248], ['running', 182], ['running', 183], ['running', 180], ['idle', 2], ['running', 162], ['running', 187], ['running', 184], ['running', 6], ['idle', 220], ['running', 186], ['running', 188], ['running', 189], ['idle', 311], ['running', 202], ['idle', 313], ['running', 196], ['idle', 221], ['idle', 317], ['running', 185], ['idle', 315], ['idle', 316], ['running', 99], ['running', 98], ['running', 168], ['running', 169], ['idle', 229], ['idle', 228], ['running', 91], ['running', 90], ['running', 93], ['running', 92], ['running', 95], ['running', 94], ['running', 97], ['running', 96], ['running', 11], ['running', 10], ['running', 13], ['running', 12], ['running', 15], ['running', 14], ['running', 17], ['running', 16], ['running', 19], ['running', 18], ['idle', 314], ['running', 117], ['idle', 250], ['running', 116], ['idle', 274], ['running', 204], ['idle', 275], ['running', 151], ['running', 150], ['running', 153], ['running', 152], ['running', 155], ['running', 154], ['idle', 157], ['running', 156], ['running', 159], ['running', 158], ['idle', 277], ['idle', 234], ['idle', 322], ['idle', 238], ['idle', 239], ['idle', 279], ['running', 207], ['idle', 235], ['idle', 236], ['idle', 237], ['idle', 230], ['idle', 231], ['idle', 232], ['idle', 233], ['idle', 224], ['idle', 280], ['running', 48], ['running', 49], ['running', 46], ['running', 47], ['running', 44], ['running', 45], ['running', 42], ['running', 43], ['running', 40], ['running', 41], ['idle', 1], ['idle', 323], ['idle', 320], ['idle', 321], ['idle', 5], ['idle', 327], ['idle', 324], ['idle', 325], ['running', 9], ['idle', 328], ['idle', 329], ['idle', 272], ['running', 146], ['running', 147], ['running', 144], ['running', 145], ['running', 142], ['running', 143], ['running', 140], ['running', 141], ['running', 209], ['running', 208], ['running', 148], ['running', 149], ['running', 77], ['running', 76], ['running', 75], ['running', 74], ['running', 73], ['running', 72], ['running', 71], ['running', 70], ['idle', 278], ['running', 79], ['running', 78], ['idle', 263], ['idle', 249], ['idle', 262], ['idle', 227], ['idle', 261], ['idle', 270], ['idle', 260], ['idle', 276], ['idle', 267], ['idle', 326], ['idle', 266]]}
+INFO 2015-12-02 09:58:00,239: 	 CRAB project directory:		/afs/cern.ch/work/s/soffi/CMSSW620-SLHC-Delphes/src/VFPix/FullSimStudies/test/crab_ggh_HToZZTo4L_InputForDelphes_1202
+INFO 2015-12-02 09:58:00,239: 	 Task name:			151202_085031:soffi_crab_ggh_HToZZTo4L_InputForDelphes_1202
+INFO 2015-12-02 09:58:00,239: 	 Grid scheduler:			crab3-5@vocms059.cern.ch
+INFO 2015-12-02 09:58:00,239: 	 Task status:			SUBMITTED
+INFO 2015-12-02 09:58:00,239: 	 Dashboard monitoring URL:	http://dashb-cms-job.cern.ch/dashboard/templates/task-analysis/#user=crab&refresh=0&table=Jobs&p=1&records=25&activemenu=2&status=&site=&tid=151202_085031%3Asoffi_crab_ggh_HToZZTo4L_InputForDelphes_1202
+INFO 2015-12-02 09:58:00,239: 	 
+Jobs status:			idle           38.4% (127/331)
+INFO 2015-12-02 09:58:00,239: 	 				running        61.6% (204/331)
+INFO 2015-12-02 09:58:00,240: 	 
+No publication information (publication has been disabled in the CRAB configuration file)
+INFO 2015-12-02 09:58:00,246: 	 Log file is /afs/cern.ch/work/s/soffi/CMSSW620-SLHC-Delphes/src/VFPix/FullSimStudies/test/crab_ggh_HToZZTo4L_InputForDelphes_1202/crab.log
